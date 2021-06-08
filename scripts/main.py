@@ -66,10 +66,10 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                cube.rotate("RURPUPRPFRRUPRPUPRURPFP")
+                cube.rotate("RPUPRUPLRU2RPUPRU2LPUR2UR")
             
             if event.key == pygame.K_RIGHT:
-                cube.rotate("U")
+                cube.rotate("R")
 
     drawBoard(50, 200)
     pygame.display.update()

@@ -28,11 +28,19 @@ class Cube():
             if(sequence[i : i + 2] == "RP"):
                 self.rotateR(sequence[i : i + 2], self.getCube())
 
+            elif(sequence[i : i + 2] == "R2"):
+                self.rotateR(sequence[i], self.getCube())
+                self.rotateR(sequence[i], self.getCube())
+
             elif(sequence[i] == "R"):
                 self.rotateR(sequence[i], self.getCube())
 
             elif(sequence[i : i + 2] == "LP"):
                 self.rotateL(sequence[i : i + 2], self.getCube())
+
+            elif(sequence[i : i + 2] == "L2"):
+                self.rotateL(sequence[i], self.getCube())
+                self.rotateL(sequence[i], self.getCube())
 
             elif(sequence[i] == "L"):
                 self.rotateL(sequence[i], self.getCube())
@@ -40,11 +48,19 @@ class Cube():
             elif(sequence[i : i + 2] == "UP"):
                 self.rotateU(sequence[i : i + 2], self.getCube())
 
+            elif(sequence[i : i + 2] == "U2"):
+                self.rotateU(sequence[i], self.getCube())
+                self.rotateU(sequence[i], self.getCube())
+
             elif(sequence[i] == "U"):
                 self.rotateU(sequence[i], self.getCube())
 
             elif(sequence[i : i + 2] == "DP"):
                 self.rotateD(sequence[i : i + 2], self.getCube())
+
+            elif(sequence[i : i + 2] == "D2"):
+                self.rotateD(sequence[i], self.getCube())
+                self.rotateD(sequence[i], self.getCube())
 
             elif(sequence[i] == "D"):
                 self.rotateD(sequence[i], self.getCube())
@@ -52,11 +68,19 @@ class Cube():
             elif(sequence[i : i + 2] == "FP"):
                 self.rotateF(sequence[i : i + 2], self.getCube())
 
+            elif(sequence[i : i + 2] == "F2"):
+                self.rotateF(sequence[i], self.getCube())
+                self.rotateF(sequence[i], self.getCube())
+
             elif(sequence[i] == "F"):
                 self.rotateF(sequence[i], self.getCube())
 
             elif(sequence[i : i + 2] == "BP"):
                 self.rotateB(sequence[i : i + 2], self.getCube())
+
+            elif(sequence[i : i + 2] == "B2"):
+                self.rotateB(sequence[i], self.getCube())
+                self.rotateB(sequence[i], self.getCube())
 
             elif(sequence[i] == "B"):
                 self.rotateB(sequence[i], self.getCube())
@@ -254,20 +278,41 @@ class Cube():
 
     def rotateF(self, rotation, total):
         if(rotation == "F"):
-            temp = [total[3][2][0].getColor(), total[3][2][1].getColor(), total[3][2][2].getColor()]
+            ext = [total[2][0][0].getColor(), total[2][0][1].getColor(), total[2][0][2].getColor()]
             for i in range(3):
-                total[3][2][i].setColor(total[5][2][i].getColor())
-                total[5][2][i].setColor(total[1][2][i].getColor())
-                total[1][2][i].setColor(total[4][2][i].getColor())
-                total[4][2][i].setColor(temp[i])
+                total[2][0][i].setColor(total[5][i][2].getColor())
+
+            for i in range(3):       
+                total[5][i][2].setColor(total[0][2][2 - i].getColor())  
+                
+
+            for i in range(3):
+                total[0][2][i].setColor(total[4][i][0].getColor())   
+
+
+            for i in range(3):
+                total[4][2 - i][0].setColor(ext[i])
+            
+
+            self.rotateFaceAntiClockwise(total[1], 3)
 
         else:
-            temp = [total[1][2][0].getColor(), total[1][2][1].getColor(), total[1][2][2].getColor()]
+            ext = [total[0][2][0].getColor(), total[0][2][1].getColor(), total[0][2][2].getColor()]
             for i in range(3):
-                total[1][2][i].setColor(total[5][2][i].getColor())
-                total[5][2][i].setColor(total[3][2][i].getColor())
-                total[3][2][i].setColor(total[4][2][i].getColor())
-                total[4][2][i].setColor(temp[i])
+                total[0][2][2 - i].setColor(total[5][i][2].getColor())
+
+            for i in range(3):       
+                total[5][i][2].setColor(total[2][0][i].getColor())  
+                
+
+            for i in range(3):
+                total[2][0][2 - i].setColor(total[4][i][0].getColor())   
+
+
+            for i in range(3):
+                total[4][i][0].setColor(ext[i])
+
+            self.rotateFaceClockwise(total[1], 3)
 
 
 
@@ -277,17 +322,32 @@ class Cube():
 
     def rotateB(self, rotation, total):
         if(rotation == "B"):
-            temp = [total[3][2][0].getColor(), total[3][2][1].getColor(), total[3][2][2].getColor()]
+            ext = [total[2][0][2].getColor(), total[2][1][2].getColor(), total[2][2][2].getColor()]
+            for i in range(3):       
+                total[2][i][2].setColor(total[3][i][2].getColor())  
+            
             for i in range(3):
-                total[3][2][i].setColor(total[5][2][i].getColor())
-                total[5][2][i].setColor(total[1][2][i].getColor())
-                total[1][2][i].setColor(total[4][2][i].getColor())
-                total[4][2][i].setColor(temp[i])
+                total[3][i][2].setColor(total[0][i][2].getColor())
 
-        else:
-            temp = [total[1][2][0].getColor(), total[1][2][1].getColor(), total[1][2][2].getColor()]
             for i in range(3):
-                total[1][2][i].setColor(total[5][2][i].getColor())
-                total[5][2][i].setColor(total[3][2][i].getColor())
-                total[3][2][i].setColor(total[4][2][i].getColor())
-                total[4][2][i].setColor(temp[i])
+                total[0][i][2].setColor(total[1][i][2].getColor())
+
+            for i in range(3):
+                total[1][i][2].setColor(ext[i])
+
+            self.rotateFaceClockwise(total[3], 3)
+        else:
+            ext = [total[2][0][2].getColor(), total[2][1][2].getColor(), total[2][2][2].getColor()]
+            for i in range(3):       
+                total[2][i][2].setColor(total[3][i][2].getColor())  
+            
+            for i in range(3):
+                total[3][i][2].setColor(total[0][i][2].getColor())
+
+            for i in range(3):
+                total[0][i][2].setColor(total[1][i][2].getColor())
+
+            for i in range(3):
+                total[1][i][2].setColor(ext[i])
+
+            self.rotateFaceClockwise(total[3], 3)
