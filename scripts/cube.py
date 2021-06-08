@@ -85,6 +85,17 @@ class Cube():
             elif(sequence[i] == "B"):
                 self.rotateB(sequence[i], self.getCube())
 
+            elif(sequence[i : i + 2] == "MP"):
+                self.rotatem(sequence[i : i + 2], self.getCube())
+
+
+            elif(sequence[i : i + 2] == "M2"):
+                self.rotateM(sequence[i], self.getCube())
+                self.rotateM(sequence[i], self.getCube())
+
+            elif(sequence[i] == "M"):
+                self.rotateB(sequence[i], self.getCube())
+
 
     def rotateFaceClockwise(self, mat, N):
         # Transpose the matrix
@@ -351,3 +362,39 @@ class Cube():
                 total[1][i][2].setColor(ext[i])
 
             self.rotateFaceClockwise(total[3], 3)
+
+        
+
+
+    def rotateM(self, rotation, total):
+        if(rotation == "M"):
+            ext = [total[3][1][0].getColor(), total[3][1][1].getColor(), total[3][1][2].getColor()]
+            for i in range(3):
+                total[3][1][i].setColor(total[5][1][2 - i].getColor())
+            
+            for i in range(3):
+                total[5][1][i].setColor(total[1][1][i].getColor())
+
+            for i in range(3):
+                total[1][1][i].setColor(total[4][1][i].getColor())
+            
+            for i in range(3):
+                total[4][1][i].setColor(ext[2 - i])
+                
+            
+
+        else:
+            ext = [total[1][1][0].getColor(), total[1][1][1].getColor(), total[1][1][2].getColor()]
+            for i in range(3):
+                total[1][1][i].setColor(total[5][1][i].getColor())      
+
+
+            for i in range(3):
+                total[5][1][i].setColor(total[3][1][2 - i].getColor())
+
+
+            for i in range(3):
+                total[3][1][i].setColor(total[4][1][2 - i].getColor())
+              
+            for i in range(3):
+                total[4][1][i].setColor(ext[i])
