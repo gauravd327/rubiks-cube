@@ -333,35 +333,42 @@ class Cube():
 
     def rotateB(self, rotation, total):
         if(rotation == "B"):
-            ext = [total[2][0][2].getColor(), total[2][1][2].getColor(), total[2][2][2].getColor()]
+            ext = [total[2][2][0].getColor(), total[2][2][1].getColor(), total[2][2][2].getColor()]
+            for i in range(3):
+                total[2][2][i].setColor(total[5][i][0].getColor())
+
             for i in range(3):       
-                total[2][i][2].setColor(total[3][i][2].getColor())  
-            
-            for i in range(3):
-                total[3][i][2].setColor(total[0][i][2].getColor())
+                total[5][2 - i][0].setColor(total[0][0][i].getColor())  
+                
 
             for i in range(3):
-                total[0][i][2].setColor(total[1][i][2].getColor())
+                total[0][0][i].setColor(total[4][i][2].getColor())   
+
 
             for i in range(3):
-                total[1][i][2].setColor(ext[i])
+                total[4][2 - i][2].setColor(ext[i])
 
             self.rotateFaceClockwise(total[3], 3)
+
+
         else:
-            ext = [total[2][0][2].getColor(), total[2][1][2].getColor(), total[2][2][2].getColor()]
+            ext = [total[0][0][0].getColor(), total[0][0][1].getColor(), total[0][0][2].getColor()]
+            for i in range(3):
+                total[0][0][2 - i].setColor(total[5][i][0].getColor())
+
             for i in range(3):       
-                total[2][i][2].setColor(total[3][i][2].getColor())  
+                total[5][i][0].setColor(total[2][2][i].getColor())  
+                
+
+            for i in range(3):
+                total[2][2][2 - i].setColor(total[4][i][2].getColor())   
+
+
+            for i in range(3):
+                total[4][i][2].setColor(ext[i])
             
-            for i in range(3):
-                total[3][i][2].setColor(total[0][i][2].getColor())
 
-            for i in range(3):
-                total[0][i][2].setColor(total[1][i][2].getColor())
-
-            for i in range(3):
-                total[1][i][2].setColor(ext[i])
-
-            self.rotateFaceClockwise(total[3], 3)
+            self.rotateFaceAntiClockwise(total[3], 3)
 
         
 

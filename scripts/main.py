@@ -66,7 +66,7 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                cube.rotate("M2UM2U2M2UM2")
+                cube.rotate("BP")
             
             if event.key == pygame.K_RIGHT:
                 cube.rotate("R")
