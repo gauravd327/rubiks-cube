@@ -23,6 +23,7 @@ BLACK = (0, 0, 0, 50)
 cube = Cube(3)
 f = open("algorithms/pll.json")
 data = json.load(f)
+cube.rotate("R B2 U2 B2 D F2 L2 R2 D B2 D2 L' U' R U' R B2 F' D' B'")
 
 def convertCol(con):
     if con == "green":

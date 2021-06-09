@@ -25,7 +25,7 @@ class Cube():
     def rotate(self, sequence):
         sequence == sequence.upper()
         for i in range(len(sequence)):
-            if(sequence[i : i + 2] == "RP"):
+            if(sequence[i : i + 2] == "R'"):
                 self.rotateR(sequence[i : i + 2], self.getCube())
 
             elif(sequence[i : i + 2] == "R2"):
@@ -35,7 +35,7 @@ class Cube():
             elif(sequence[i] == "R"):
                 self.rotateR(sequence[i], self.getCube())
 
-            elif(sequence[i : i + 2] == "LP"):
+            elif(sequence[i : i + 2] == "L'"):
                 self.rotateL(sequence[i : i + 2], self.getCube())
 
             elif(sequence[i : i + 2] == "L2"):
@@ -45,7 +45,7 @@ class Cube():
             elif(sequence[i] == "L"):
                 self.rotateL(sequence[i], self.getCube())
             
-            elif(sequence[i : i + 2] == "UP"):
+            elif(sequence[i : i + 2] == "U'"):
                 self.rotateU(sequence[i : i + 2], self.getCube())
 
             elif(sequence[i : i + 2] == "U2"):
@@ -55,7 +55,7 @@ class Cube():
             elif(sequence[i] == "U"):
                 self.rotateU(sequence[i], self.getCube())
 
-            elif(sequence[i : i + 2] == "DP"):
+            elif(sequence[i : i + 2] == "D'"):
                 self.rotateD(sequence[i : i + 2], self.getCube())
 
             elif(sequence[i : i + 2] == "D2"):
@@ -65,7 +65,7 @@ class Cube():
             elif(sequence[i] == "D"):
                 self.rotateD(sequence[i], self.getCube())
 
-            elif(sequence[i : i + 2] == "FP"):
+            elif(sequence[i : i + 2] == "F'"):
                 self.rotateF(sequence[i : i + 2], self.getCube())
 
             elif(sequence[i : i + 2] == "F2"):
@@ -75,7 +75,7 @@ class Cube():
             elif(sequence[i] == "F"):
                 self.rotateF(sequence[i], self.getCube())
 
-            elif(sequence[i : i + 2] == "BP"):
+            elif(sequence[i : i + 2] == "B'"):
                 self.rotateB(sequence[i : i + 2], self.getCube())
 
             elif(sequence[i : i + 2] == "B2"):
@@ -85,7 +85,7 @@ class Cube():
             elif(sequence[i] == "B"):
                 self.rotateB(sequence[i], self.getCube())
 
-            elif(sequence[i : i + 2] == "MP"):
+            elif(sequence[i : i + 2] == "M'"):
                 self.rotateM(sequence[i : i + 2], self.getCube())
 
 
@@ -333,25 +333,6 @@ class Cube():
 
     def rotateB(self, rotation, total):
         if(rotation == "B"):
-            ext = [total[2][2][0].getColor(), total[2][2][1].getColor(), total[2][2][2].getColor()]
-            for i in range(3):
-                total[2][2][i].setColor(total[5][i][0].getColor())
-
-            for i in range(3):       
-                total[5][2 - i][0].setColor(total[0][0][i].getColor())  
-                
-
-            for i in range(3):
-                total[0][0][i].setColor(total[4][i][2].getColor())   
-
-
-            for i in range(3):
-                total[4][2 - i][2].setColor(ext[i])
-
-            self.rotateFaceClockwise(total[3], 3)
-
-
-        else:
             ext = [total[0][0][0].getColor(), total[0][0][1].getColor(), total[0][0][2].getColor()]
             for i in range(3):
                 total[0][0][2 - i].setColor(total[5][i][0].getColor())
@@ -369,6 +350,27 @@ class Cube():
             
 
             self.rotateFaceAntiClockwise(total[3], 3)
+
+            
+
+
+        else:
+            ext = [total[2][2][0].getColor(), total[2][2][1].getColor(), total[2][2][2].getColor()]
+            for i in range(3):
+                total[2][2][i].setColor(total[5][i][0].getColor())
+
+            for i in range(3):       
+                total[5][2 - i][0].setColor(total[0][0][i].getColor())  
+                
+
+            for i in range(3):
+                total[0][0][i].setColor(total[4][i][2].getColor())   
+
+
+            for i in range(3):
+                total[4][2 - i][2].setColor(ext[i])
+
+            self.rotateFaceClockwise(total[3], 3)
 
         
 
