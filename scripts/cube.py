@@ -86,7 +86,7 @@ class Cube():
                 self.rotateB(sequence[i], self.getCube())
 
             elif(sequence[i : i + 2] == "MP"):
-                self.rotatem(sequence[i : i + 2], self.getCube())
+                self.rotateM(sequence[i : i + 2], self.getCube())
 
 
             elif(sequence[i : i + 2] == "M2"):
@@ -405,3 +405,4 @@ class Cube():
               
             for i in range(3):
                 total[4][1][i].setColor(ext[i])
+

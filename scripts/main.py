@@ -1,3 +1,4 @@
+import json
 import pygame
 from cube import Cube
 
@@ -20,8 +21,8 @@ BLACK = (0, 0, 0, 50)
 
 
 cube = Cube(3)
-
-
+f = open("algorithms/pll.json")
+data = json.load(f)
 
 def convertCol(con):
     if con == "green":
@@ -66,10 +67,9 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                cube.rotate("BP")
+                cube.rotate(data['ua'])
             
-            if event.key == pygame.K_RIGHT:
-                cube.rotate("R")
+
 
     drawBoard(50, 200)
     pygame.display.update()
